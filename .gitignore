@@ -1,0 +1,15 @@
+# Data files
+*.csv
+
+# Environments
+venv/
+.env
+
+# Python caching
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE config
+.vscode/
