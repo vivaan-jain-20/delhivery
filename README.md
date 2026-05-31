@@ -51,4 +51,11 @@ Because a single package journey spans multiple rows, we must first reconstruct 
 Instead of using physical distance, edge weights reflect **network friction**.
 * For each aggregated edge, we calculate the median delay ratio: `segment_actual_time / segment_osrm_time`.
 * A ratio > 1.0 indicates a corridor that systematically takes longer than the OSRM routing engine expects (e.g., due to traffic, poor roads, or facility dwell time).
-* *Stratification:* Edges are further stratified by `route_type` (FTL vs. Cart
+* *Stratification:* Edges are further stratified by `route_type` (FTL vs. Carting) and `time_of_day`, as a corridor's delay profile changes dynamically based on these constraints.
+
+### 5. Network Metrics Generation
+Once the directed, weighted graph is initialized in `NetworkX`, we compute structural features to identify systemic vulnerabilities:
+* **Betweenness Centrality:** Identifies bottleneck hubs that act as critical bridges in the network.
+* **In/Out-Degree:** Measures facility throughput and congestion risk.
+* **Clustering Coefficients:** Detects highly localized routing zones.
+These metrics are then exported to serve as structural features for the downstream GraphSAGE neural network and XGBoost route-selection models.
