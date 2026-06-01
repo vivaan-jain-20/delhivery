@@ -8,7 +8,7 @@ import branca.colormap as cm
 
 def load_coordinates():
     """
-    Downloads and caches the Indian pincode coordinates dataset.
+    Downloads and caches the Indian pincode coordinates dataset locally.
     """
     current_dir = os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(current_dir, "pincodes_coordinates.csv")
@@ -26,7 +26,7 @@ def load_coordinates():
                 'Longitude': 'longitude'
             })
             
-            # Convert to numeric, coercing errors (like text headers or corrupt rows) to NaN
+            # Convert to numeric, coercing errors to NaN
             df['pincode'] = pd.to_numeric(df['pincode'], errors='coerce')
             df['latitude'] = pd.to_numeric(df['latitude'], errors='coerce')
             df['longitude'] = pd.to_numeric(df['longitude'], errors='coerce')
@@ -47,8 +47,8 @@ def load_coordinates():
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    graph_pkl_path = os.path.join(current_dir, "delhivery_graph.pkl")
-    output_file = os.path.join(current_dir, "..", "delhivery_geo_network.html")
+    graph_pkl_path = os.path.join(current_dir, "..", "graph_building_pipeline", "delhivery_graph.pkl")
+    output_file = os.path.join(current_dir, "delhivery_geo_network.html")
 
     # 1. Load the Graph
     print(f"Loading NetworkX graph from: {graph_pkl_path}...")

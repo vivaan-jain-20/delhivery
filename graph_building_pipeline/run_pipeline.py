@@ -1,20 +1,19 @@
 import os
 import sys
 
-# Add parent directory of pipeline to path to support running directly
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add the directory containing run_pipeline.py to sys.path to support relative imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
 
-from pipeline.preprocessing import load_data, preprocess_data
-from pipeline.aggregation import aggregate_edges
-from pipeline.graph import initialize_graph
+from preprocessing import load_data, preprocess_data
+from aggregation import aggregate_edges
+from graph import initialize_graph
 
 def main():
     print("==================================================")
     print("  Delhivery Graph Construction Pipeline Runner")
     print("==================================================")
     
-    # Paths are resolved relative to this file
-    current_dir = os.path.dirname(os.path.abspath(__file__))
     cleaned_csv_path = os.path.join(current_dir, "..", "cleaning", "cleaned_delivery_data.csv")
     
     try:
@@ -28,7 +27,7 @@ def main():
         # Step 3: Construct Graph
         G = initialize_graph(df_preprocessed, aggregated_edges)
         
-        # Save graph using pickle
+        # Save graph using pickle inside the pipeline directory
         graph_pkl_path = os.path.join(current_dir, "delhivery_graph.pkl")
         import pickle
         print(f"Saving graph to: {graph_pkl_path}")

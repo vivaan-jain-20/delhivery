@@ -3,13 +3,13 @@ import sys
 import pickle
 from pyvis.network import Network
 
-# Ensure the parent directory is in the path to run directly if needed
+# Ensure the parent directory is in the path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def generate_visualization():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    graph_pkl_path = os.path.join(current_dir, "delhivery_graph.pkl")
-    output_html_path = os.path.join(current_dir, "..", "delhivery_network.html")
+    graph_pkl_path = os.path.join(current_dir, "..", "graph_building_pipeline", "delhivery_graph.pkl")
+    output_html_path = os.path.join(current_dir, "delhivery_network.html")
 
     print(f"Loading NetworkX graph from: {graph_pkl_path}...")
     if not os.path.exists(graph_pkl_path):
@@ -45,7 +45,7 @@ def generate_visualization():
             node_id, 
             label=name, 
             title=title, 
-            color="#4ade80",  # A nice premium light green color for facility nodes
+            color="#4ade80",  # Premium light green color for facility nodes
             size=15 + in_degree * 0.5  # Size nodes dynamically based on in-degree
         )
 

@@ -1,6 +1,6 @@
 import networkx as nx
 import pandas as pd
-from .models import FacilityNode, CorridorEdge
+from models import FacilityNode, CorridorEdge
 
 def initialize_graph(df: pd.DataFrame, aggregated_edges: pd.DataFrame) -> nx.MultiDiGraph:
     """
