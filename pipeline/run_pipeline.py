@@ -28,6 +28,13 @@ def main():
         # Step 3: Construct Graph
         G = initialize_graph(df_preprocessed, aggregated_edges)
         
+        # Save graph using pickle
+        graph_pkl_path = os.path.join(current_dir, "delhivery_graph.pkl")
+        import pickle
+        print(f"Saving graph to: {graph_pkl_path}")
+        with open(graph_pkl_path, 'wb') as f:
+            pickle.dump(G, f)
+        
         print("\n==================================================")
         print("  Pipeline Results & Verification")
         print("==================================================")
