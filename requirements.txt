@@ -3,3 +3,5 @@ networkx>=3.0
 pyvis>=0.3.0
 folium>=0.15.0
 branca>=0.7.0
+scikit-learn==1.4.1.post1
+numpy==1.26.4
