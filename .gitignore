@@ -2,7 +2,9 @@
 *.csv
 *.pkl
 *.html
+*.npy
 lib/
+ml_data/
 
 # Environments
 venv/
@@ -16,3 +18,6 @@ __pycache__/
 
 # IDE config
 .vscode/
+
+# macOS system files
+.DS_Store
