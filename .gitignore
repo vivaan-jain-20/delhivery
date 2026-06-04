@@ -21,3 +21,16 @@ __pycache__/
 
 # macOS system files
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon_
+
+# Git conflict and swap safety
+*.swp
+*~
+.fuse_hidden*
+
+# Python distribution / build artifacts
+*.egg-info/
+dist/
+build/
