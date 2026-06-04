@@ -1,6 +1,6 @@
 # 📊 Delhivery Logistics Network Optimizer & Graph ETA Engine
 
-A modular logistics optimization and machine learning project designed to construct, visualize, and predict transit metrics across Delhivery's national supply chain web. This project builds a directed network graph (`networkx.DiGraph`) from raw trip segments, maps logistics hubs using postal datasets, identifies topological chokeholds, and deploys a state-of-the-art Histogram Gradient Boosting engine augmented with 2-Hop Spatial GraphSAGE features to maximize arrival time predictions and SLA compliance targets.
+A modular logistics optimization and machine learning project designed to construct, visualize, and predict transit metrics across Delhivery's national supply chain web. This project builds a directed network graph (`networkx.DiGraph`) from raw trip segments, maps logistics hubs using postal datasets, identifies topological chokeholds, and deploys a state-of-the-art Histogram Gradient Boosting engine augmented with 2-Hop Spatial GraphSAGE features to maximize arrival time predictions, boost SLA compliance targets, and optimize structural fleet deployment (FTL vs. Carting).
 
 ---
 
@@ -19,15 +19,16 @@ The project is structured into four self-contained, sequential pipeline director
    * Includes structural physics layouts (PyVis with gravity simulations) and geographic heatmaps (Folium map nodes sized by bottleneck centrality and routes colored by real-world transit delays).
    * Houses the strategic **Graph Analysis & Strategy Guide**.
 4. **`Graph-enhanced ETA prediction model/`**:
-   * Architectures the machine learning optimization and benchmarking framework.
+   * Architectures the machine learning optimization, benchmarking, and decision-routing frameworks.
    * Implements a localized 2-Hop Spatial Neighborhood Aggregator (inspired by GraphSAGE) and matrix PageRank power-iterations to convert complex network shapes into 16-dimensional edge feature vectors.
    * Compares a traditional tabular model against a high-speed histogram boosting ensemble (`HistGradientBoostingRegressor`) optimized directly under absolute error criteria.
+   * Deploys a **Digital Twin counterfactual scenario simulator** (`route_optimization_framework.py`) that models parallel routing types (FTL vs. Carting) to calculate exact speed-cost trade-offs relative to a corridor's distance, time-of-day, and origin hub infrastructure risk.
 
 ---
 
 ## 🚀 Getting Started (How to Run)
 
-Follow these steps to set up, initialize, and execute the entire network optimization and machine learning pipeline:
+Follow these steps to set up, initialize, and execute the entire network optimization, machine learning, and fleet routing pipeline:
 
 ### 1. Place the Dataset
 * Obtain your raw dataset `delivery_data.csv` (approx. 55MB) and place it directly in the **root directory** of this repository.
@@ -65,3 +66,6 @@ python3 "Graph-enhanced ETA prediction model/prepare_ml_data.py"
 
 # Step E: Train and benchmark high-speed gradient boosting regression models
 python3 "Graph-enhanced ETA prediction model/train_models.py"
+
+# Step F: Run counterfactual simulations to optimize fleet routing (FTL vs. Carting)
+python3 "Graph-enhanced ETA prediction model/route_optimization_framework.py"
