@@ -109,18 +109,3 @@ python "Graph-enhanced ETA prediction model/route_optimization_framework.py"
 ```bash
 streamlit run app.py
 ```
-
----
-
-## 💻 Cross-Platform Compatibility
-
-To ensure this project runs seamlessly across Windows, macOS, Linux, and POSIX terminal environments (such as MSYS2 or Git Bash):
-
-1. **Virtual Environment Interpreter Resolution (`python` vs. `python3`):**
-   * On Windows, virtual environments only contain `python.exe` and do **not** create a `python3.exe` alias.
-   * If you use `python3` after activating a virtual environment on Windows, the shell will bypass the virtual environment and fallback to your global python interpreter (e.g. MSYS2's compiler environment).
-   * **Best Practice:** Once the virtual environment is activated, always use the command **`python`** instead of `python3`. This ensures dependencies are read from and installed to the local virtual environment.
-2. **File Path Separators:**
-   * Source scripts use Python's standard `pathlib` and `os.path` libraries rather than hardcoded slashes. Path separators automatically adapt to the host operating system's native formats.
-3. **Ignore Binaries & Caches:**
-   * Keep compiled files, local environment directories (`venv/`), `.pkl` models, and `.npy` arrays out of Git versioning. They are fully pre-configured in `.gitignore`.
