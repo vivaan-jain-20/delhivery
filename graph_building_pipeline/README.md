@@ -1,8 +1,8 @@
-# 🕸️ Graph Building Pipeline Component
+# Graph Building Pipeline Component
 
 This directory contains the Python modules to reconstruct the logistics transit corridors from segment data and build the `networkx.MultiDiGraph` network structure.
 
-## 📄 File Overview
+## File Overview
 
 * **`models.py`**: Defines the `FacilityNode` (nodes) and `CorridorEdge` (edges) memory-efficient Python dataclasses.
 * **`preprocessing.py`**: Removes zero-duration estimates (`segment_osrm_time <= 0`) and calculates the `delay_ratio = segment_actual_time / segment_osrm_time`.
@@ -13,7 +13,7 @@ This directory contains the Python modules to reconstruct the logistics transit 
 
 ---
 
-## ⚙️ Pipeline Steps
+## Pipeline Steps
 
 1. **Pre-processing**: Loads `cleaning/cleaned_delivery_data.csv` and filters out any rows where `segment_osrm_time <= 0` (division-by-zero safeguard). Calculates the delay ratio.
 2. **Aggregation**: Groups records by `(source_center, destination_center, route_type, time_of_day)`. Finds the median delay ratio and count of trips. Filters out groups with $< 5$ trips.
@@ -22,7 +22,7 @@ This directory contains the Python modules to reconstruct the logistics transit 
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 Run the orchestrator script using the virtual environment:
 

@@ -1,8 +1,8 @@
-# 📊 Graph Visualizations Component
+# Graph Visualizations Component
 
 This directory contains scripts that translate our serialized logistics network graph into interactive, web-based HTML visualizations.
 
-## 📄 File Overview
+## File Overview
 
 * **`visualize.py`**: Generates `delhivery_network.html` using PyVis.
   * *Features*: Physics layout panel, zoom, drag, and gravity controls. Nodes are color-coded in light green, and edges are colored red (if delay ratio $> 1.2$) or blue (if delay ratio $\le 1.2$).
@@ -12,7 +12,7 @@ This directory contains scripts that translate our serialized logistics network 
 
 ---
 
-## ⚙️ Generated HTML Visualizations (Outputs)
+## Generated HTML Visualizations (Outputs)
 
 Running the scripts generates two standalone HTML map files inside this folder:
 * **`delhivery_network.html`** *(ignored by git)*: Interactive physics network.
@@ -21,7 +21,7 @@ Running the scripts generates two standalone HTML map files inside this folder:
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 Before running, ensure `graph_building_pipeline/run_pipeline.py` has completed and generated `graph_building_pipeline/delhivery_graph.pkl`.
 

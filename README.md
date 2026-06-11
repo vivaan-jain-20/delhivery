@@ -1,10 +1,10 @@
-# 📊 Delhivery Logistics Network Optimizer & Graph ETA Engine
+# Delhivery Logistics Network Optimizer & Graph ETA Engine
 
 A modular logistics optimization and machine learning project designed to construct, visualize, and predict transit metrics across Delhivery's national supply chain web. This project builds a directed network graph (`networkx.DiGraph`) from raw trip segments, maps logistics hubs using postal datasets, identifies topological chokeholds, and deploys a state-of-the-art Histogram Gradient Boosting engine augmented with 2-Hop Spatial GraphSAGE features to maximize arrival time predictions, boost SLA compliance targets, and optimize structural fleet deployment (FTL vs. Carting).
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 The project is structured into four self-contained, sequential pipeline directories:
 
@@ -34,7 +34,7 @@ The project is structured into four self-contained, sequential pipeline director
 
 ---
 
-## 🚀 Getting Started (How to Run)
+## Getting Started (How to Run)
 
 Follow these steps to set up, initialize, and execute the entire network optimization, machine learning, and fleet routing pipeline:
 

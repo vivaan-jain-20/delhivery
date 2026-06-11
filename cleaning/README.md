@@ -1,15 +1,15 @@
-# 🧹 Data Cleaning Component
+# Data Cleaning Component
 
 This folder contains scripts to parse and clean Delhivery's raw delivery segment dataset, filtering out anomalies and restructuring it for graph construction.
 
-## 📄 File Overview
+## File Overview
 
 * **`clean.py`**: The cleaning script. Reads raw data from the parent directory (`../delivery_data.csv`) and outputs the cleaned dataset locally (`cleaned_delivery_data.csv`).
 * **`cleaned_delivery_data.csv`** *(ignored by git)*: The generated high-quality cleaned dataset used by the downstream pipeline.
 
 ---
 
-## ⚙️ Cleaning Operations Performed
+## Cleaning Operations Performed
 
 The cleaning process executes the following steps:
 
@@ -36,7 +36,7 @@ The cleaning process executes the following steps:
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 Run this script using the virtual environment Python:
 
