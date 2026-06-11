@@ -174,6 +174,12 @@ if __name__ == "__main__":
         out_dir = os.path.join(script_dir, 'ml_data')
         os.makedirs(out_dir, exist_ok=True)
 
+        # Save sage_embeddings dictionary to pickle format
+        embeddings_path = os.path.join(out_dir, 'sage_embeddings.pkl')
+        print(f"Saving sage embeddings to: {embeddings_path}")
+        with open(embeddings_path, 'wb') as f:
+            pickle.dump(sage_embeddings, f)
+
         # FIX: Force everything to float64 numbers before saving to prevent Object arrays
         np.save(os.path.join(out_dir, 'X_train_baseline.npy'), X_tr_b.astype(np.float64))
         np.save(os.path.join(out_dir, 'X_test_baseline.npy'), X_te_b.astype(np.float64))
@@ -183,10 +189,10 @@ if __name__ == "__main__":
         np.save(os.path.join(out_dir, 'y_test.npy'), y_te.astype(np.float64))
 
         print("\n=======================================================")
-        print(" ✅ ML DATA PIPELINE EXECUTED SUCCESSFULLY!")
+        print(" [SUCCESS] ML DATA PIPELINE EXECUTED SUCCESSFULLY!")
         print(f" Data matrices generated and saved in '{out_dir}'")
         print(" Run 'python train_models.py' to observe graph performance.")
         print("=======================================================\n")
 
     except Exception as e:
-        print(f"\n❌ Execution Failed: {e}")
+        print(f"\n[ERROR] Execution Failed: {e}")

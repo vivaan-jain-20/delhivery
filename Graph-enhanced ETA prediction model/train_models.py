@@ -28,7 +28,7 @@ def run_ml_benchmark():
         y_tr = np.load(os.path.join(data_dir, 'y_train.npy'), allow_pickle=True)
         y_te = np.load(os.path.join(data_dir, 'y_test.npy'), allow_pickle=True)
     except FileNotFoundError:
-        print("❌ Data not found! Please run 'python prepare_ml_data.py' first.")
+        print("[ERROR] Data not found! Please run 'python prepare_ml_data.py' first.")
         return
 
     # PREMIUM GRADIENT BOOSTING CONFIGURATION
@@ -51,6 +51,14 @@ def run_ml_benchmark():
     gbt_graph = HistGradientBoostingRegressor(**model_config)
     gbt_graph.fit(X_tr_g, y_tr)
     preds_graph = gbt_graph.predict(X_te_g)
+
+    # Save the trained models using pickle
+    print(f"Saving trained models to: {data_dir}")
+    import pickle
+    with open(os.path.join(data_dir, 'gbt_base.pkl'), 'wb') as f:
+        pickle.dump(gbt_base, f)
+    with open(os.path.join(data_dir, 'gbt_graph.pkl'), 'wb') as f:
+        pickle.dump(gbt_graph, f)
     
     # Mathematical performance verification
     mae_b = mean_absolute_error(y_te, preds_base)

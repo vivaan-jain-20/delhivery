@@ -23,6 +23,14 @@ The project is structured into four self-contained, sequential pipeline director
    * Implements a localized 2-Hop Spatial Neighborhood Aggregator (inspired by GraphSAGE) and matrix PageRank power-iterations to convert complex network shapes into 16-dimensional edge feature vectors.
    * Compares a traditional tabular model against a high-speed histogram boosting ensemble (`HistGradientBoostingRegressor`) optimized directly under absolute error criteria.
    * Deploys a **Digital Twin counterfactual scenario simulator** (`route_optimization_framework.py`) that models parallel routing types (FTL vs. Carting) to calculate exact speed-cost trade-offs relative to a corridor's distance, time-of-day, and origin hub infrastructure risk.
+5. **Streamlit Control Tower Dashboard (`app.py`, `pages/`)**:
+   * A premium, multi-page frontend dashboard built for a Network Operations Leader.
+   * Integrates live with backend NetworkX topologies and HistGradientBoosting ML models.
+   * Key pages:
+     * **Landing Page (`app.py`)**: Renders high-level KPIs and integrates the interactive Folium geospatial map.
+     * **Bottleneck Audit (`pages/1_Bottleneck_Audit.py`)**: Computes and ranks nodes by PageRank and Betweenness Centrality on the fly, with an investment payoff simulator.
+     * **ETA Prediction (`pages/2_ETA_Prediction.py`)**: Runs live model predictions comparing OSRM baselines and GraphSAGE predictions for selected routes.
+     * **Route Optimization (`pages/3_Route_Optimization.py`)**: Executes counterfactual FTL vs. Carting simulations and applies operational hurdle rules.
 
 ---
 
@@ -38,7 +46,7 @@ Create and activate an isolated Python virtual environment, then install all pro
 
 ```bash
 # 1. Create a local virtual environment
-python3 -m venv venv
+python -m venv venv
 
 # 2. Activate the virtual environment
 # On macOS / Linux:
@@ -49,23 +57,42 @@ source venv/bin/activate
 .\venv\Scripts\activate.bat
 
 # 3. Install required packages
-python3 -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 # Step A: Clean and preprocess the raw data
-python3 cleaning/clean.py
+python cleaning/clean.py
 
 # Step B: Build the NetworkX topology graph layout
-python3 graph_building_pipeline/run_pipeline.py
+python graph_building_pipeline/run_pipeline.py
 
 # Step C: Generate interactive structural and geographical HTML maps
-python3 graph_visualizations/visualize.py
-python3 graph_visualizations/visualize_geo.py
+python graph_visualizations/visualize.py
+python graph_visualizations/visualize_geo.py
 
 # Step D: Extract 2-Hop spatial embeddings and build ML feature matrices
-python3 "Graph-enhanced ETA prediction model/prepare_ml_data.py"
+python "Graph-enhanced ETA prediction model/prepare_ml_data.py"
 
 # Step E: Train and benchmark high-speed gradient boosting regression models
-python3 "Graph-enhanced ETA prediction model/train_models.py"
+python "Graph-enhanced ETA prediction model/train_models.py"
 
 # Step F: Run counterfactual simulations to optimize fleet routing (FTL vs. Carting)
-python3 "Graph-enhanced ETA prediction model/route_optimization_framework.py"
+python "Graph-enhanced ETA prediction model/route_optimization_framework.py"
+
+# Step G: Launch the Control Tower Streamlit Dashboard
+streamlit run app.py
+```
+
+---
+
+## 💻 Cross-Platform Compatibility
+
+To ensure this project runs seamlessly across Windows, macOS, Linux, and POSIX terminal environments (such as MSYS2 or Git Bash):
+
+1. **Virtual Environment Interpreter Resolution (`python` vs. `python3`):**
+   * On Windows, virtual environments only contain `python.exe` and do **not** create a `python3.exe` alias.
+   * If you use `python3` after activating a virtual environment on Windows, the shell will bypass the virtual environment and fallback to your global python interpreter (e.g. MSYS2's compiler environment).
+   * **Best Practice:** Once the virtual environment is activated, always use the command **`python`** instead of `python3`. This ensures dependencies are read from and installed to the local virtual environment.
+2. **File Path Separators:**
+   * Source scripts use Python's standard `pathlib` and `os.path` libraries rather than hardcoded slashes. Path separators automatically adapt to the host operating system's native formats.
+3. **Ignore Binaries & Caches:**
+   * Keep compiled files, local environment directories (`venv/`), `.pkl` models, and `.npy` arrays out of Git versioning. They are fully pre-configured in `.gitignore`.

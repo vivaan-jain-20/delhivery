@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#4ade80"         # Premium Green
+backgroundColor = "#0f172a"      # Slate 900
+secondaryBackgroundColor = "#1e293b" # Slate 800
+textColor = "#f8fafc"            # Slate 50
+font = "sans serif"
