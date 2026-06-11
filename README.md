@@ -41,44 +41,72 @@ Follow these steps to set up, initialize, and execute the entire network optimiz
 ### 1. Place the Dataset
 * Obtain your raw dataset `delivery_data.csv` (approx. 55MB) and place it directly in the **root directory** of this repository.
 
-### 2. Environment Setup
-Create and activate an isolated Python virtual environment, then install all project requirements:
+### 2. Environment Setup & Execution
+Follow these modular commands to initialize and run the pipeline step by step:
 
+**Create the local virtual environment:**
 ```bash
-# 1. Create a local virtual environment
 python -m venv venv
+```
 
-# 2. Activate the virtual environment
-# On macOS / Linux:
+**Activate the virtual environment:**
+* For **macOS / Linux / POSIX (MSYS2/Git Bash)**:
+```bash
 source venv/bin/activate
-# On Windows (PowerShell):
+```
+* For **Windows (PowerShell)**:
+```powershell
 .\venv\Scripts\Activate.ps1
-# On Windows (Cmd):
+```
+* For **Windows (Command Prompt)**:
+```cmd
 .\venv\Scripts\activate.bat
+```
 
-# 3. Install required packages
+**Install required packages:**
+```bash
 python -m pip install -r requirements.txt
+```
 
-# Step A: Clean and preprocess the raw data
+---
+
+### 3. Pipeline Execution Steps
+
+Execute the data, visualization, and machine learning pipeline sequentially:
+
+**Step A: Clean and preprocess the raw delivery data**
+```bash
 python cleaning/clean.py
+```
 
-# Step B: Build the NetworkX topology graph layout
+**Step B: Build the NetworkX topology graph layout**
+```bash
 python graph_building_pipeline/run_pipeline.py
+```
 
-# Step C: Generate interactive structural and geographical HTML maps
+**Step C: Generate interactive structural and geographical HTML maps**
+```bash
 python graph_visualizations/visualize.py
 python graph_visualizations/visualize_geo.py
+```
 
-# Step D: Extract 2-Hop spatial embeddings and build ML feature matrices
+**Step D: Extract 2-Hop spatial embeddings and build ML feature matrices**
+```bash
 python "Graph-enhanced ETA prediction model/prepare_ml_data.py"
+```
 
-# Step E: Train and benchmark high-speed gradient boosting regression models
+**Step E: Train and benchmark high-speed gradient boosting regression models**
+```bash
 python "Graph-enhanced ETA prediction model/train_models.py"
+```
 
-# Step F: Run counterfactual simulations to optimize fleet routing (FTL vs. Carting)
+**Step F: Run counterfactual simulations to optimize fleet routing (FTL vs. Carting)**
+```bash
 python "Graph-enhanced ETA prediction model/route_optimization_framework.py"
+```
 
-# Step G: Launch the Control Tower Streamlit Dashboard
+**Step G: Launch the Control Tower Streamlit Dashboard**
+```bash
 streamlit run app.py
 ```
 
